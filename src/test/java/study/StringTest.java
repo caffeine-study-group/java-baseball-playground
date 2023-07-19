@@ -21,4 +21,12 @@ public class StringTest {
     void split_2() {
         assertThat("1".split(",")).containsExactly("1");
     }
+
+    @Test
+    void substring_1() {
+        String str = "(1,2)";
+        int beginIndex = str.indexOf("(");
+        int endIndex = str.indexOf(")");
+        assertThat(str.substring(beginIndex + 1, endIndex)).isEqualTo("1,2");
+    }
 }
