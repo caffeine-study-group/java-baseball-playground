@@ -1,11 +1,16 @@
 package calculator;
 
+import calculator.string.StringCalculatorSymbols;
+import calculator.token.LongToken;
+import calculator.token.SymbolToken;
+import calculator.token.Token;
+
 import java.util.LinkedList;
 import java.util.Map;
 
-public class StringCalculatorTokens<T> {
+public class CalculatorTokens<T> {
     LinkedList<Token> list  = new LinkedList<>();
-    public StringCalculatorTokens(String input) {
+    public CalculatorTokens(String input) {
         for (String splitStr : input.split(" ")) {
             list.add(getToken(splitStr));
         }

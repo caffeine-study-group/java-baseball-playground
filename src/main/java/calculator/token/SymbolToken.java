@@ -1,4 +1,4 @@
-package calculator;
+package calculator.token;
 
 public class SymbolToken implements Token {
     String symbol;

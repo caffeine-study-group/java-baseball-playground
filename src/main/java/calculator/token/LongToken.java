@@ -1,4 +1,4 @@
-package calculator;
+package calculator.token;
 
 public class LongToken implements Token {
     long value;
