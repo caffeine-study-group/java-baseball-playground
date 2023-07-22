@@ -1,26 +1,34 @@
 package calculator;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Map;
 
-public class StringCalculatorTokens {
-    LinkedList<String> list  = new LinkedList<>();
+public class StringCalculatorTokens<T> {
+    LinkedList<Token> list  = new LinkedList<>();
     public StringCalculatorTokens(String input) {
-        Collections.addAll(list, input.split(" "));
+        for (String splitStr : input.split(" ")) {
+            list.add(getToken(splitStr));
+        }
     }
 
-    public Long calc(Map<String, CalculateFunction<Long, Long>> calculateMethods) {
+    private Token getToken(String splitStr) {
+        if (StringCalculatorSymbols.contains(splitStr)) {
+            return new SymbolToken(splitStr);
+        }
+        return new LongToken(splitStr);
+    }
+
+    public T calc(Map<String, CalculateFunction<T, T>> calculateMethods) {
         loop(calculateMethods);
-        return Long.parseLong(list.getFirst());
+        return (T) list.getFirst().getValue();
     }
 
-    private void loop(Map<String, CalculateFunction<Long, Long>> calculateMethods) {
+    private void loop(Map<String, CalculateFunction<T, T>> calculateMethods) {
         while (list.size() > 1) {
-            Long v1 = Long.parseLong(list.pop());
-            String symbol = list.pop();
-            Long v2 = Long.parseLong(list.pop());
-            list.addFirst(calculateMethods.get(symbol).apply(v1, v2).toString());
+            T v1 = (T) list.pop().getValue();
+            String symbol = (String) list.pop().getValue();
+            T v2 = (T) list.pop().getValue();
+            list.addFirst(new LongToken(calculateMethods.get(symbol).apply(v1, v2).toString()));
         }
     }
 }

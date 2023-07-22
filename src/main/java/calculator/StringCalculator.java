@@ -22,7 +22,7 @@ public class StringCalculator implements Calculator {
     @Override
     public long calculate(String input) {
         blankOrNullCheck(input);
-        StringCalculatorTokens StringCalculatorTokens = new StringCalculatorTokens(input);
+        StringCalculatorTokens<Long> StringCalculatorTokens = new StringCalculatorTokens<>(input);
         return StringCalculatorTokens.calc(calculateFunctions);
     }
 
