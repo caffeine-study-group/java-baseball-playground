@@ -1,20 +1,23 @@
 package calculator;
 
-import calculator.string.StringCalculator;
+import calculator.string.StringCalculatorSymbols;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CalculatorTest {
-    Calculator calculator;
+    Calculator<Long> calculator;
 
     @BeforeEach
     void setUp() {
-        calculator = new StringCalculator();
+        calculator = new CalculatorImpl<>(StringCalculatorSymbols.getCalculateFunctions());
     }
 
     @Test
@@ -41,7 +44,6 @@ class CalculatorTest {
 
     @Test
     void 문자열_계산기_테스트_1() {
-        Calculator calculator = new StringCalculator();
         assertThat(calculator.calculate("2 + 3 * 4 / 2")).isEqualTo(10L);
     }
 }

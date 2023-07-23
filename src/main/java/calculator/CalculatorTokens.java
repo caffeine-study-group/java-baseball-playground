@@ -6,12 +6,12 @@ import calculator.token.SymbolToken;
 import calculator.token.Token;
 
 import java.util.LinkedList;
-import java.util.Map;
 
-public class CalculatorTokens<T> {
+public class CalculatorTokens {
+    private static final String DELIMITER = " ";
     LinkedList<Token> list  = new LinkedList<>();
     public CalculatorTokens(String input) {
-        for (String splitStr : input.split(" ")) {
+        for (String splitStr : input.split(DELIMITER)) {
             list.add(getToken(splitStr));
         }
     }
@@ -23,17 +23,15 @@ public class CalculatorTokens<T> {
         return new LongToken(splitStr);
     }
 
-    public T calc(Map<String, CalculateFunction<T, T>> calculateMethods) {
-        loop(calculateMethods);
-        return (T) list.getFirst().getValue();
+    public int size() {
+        return list.size();
     }
 
-    private void loop(Map<String, CalculateFunction<T, T>> calculateMethods) {
-        while (list.size() > 1) {
-            T v1 = (T) list.pop().getValue();
-            String symbol = (String) list.pop().getValue();
-            T v2 = (T) list.pop().getValue();
-            list.addFirst(new LongToken(calculateMethods.get(symbol).apply(v1, v2).toString()));
-        }
+    public Object pop() {
+        return list.pop().getValue();
+    }
+
+    public void addFirst(String inputStr) {
+        list.addFirst(getToken(inputStr));
     }
 }

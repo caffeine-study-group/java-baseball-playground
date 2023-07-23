@@ -1,5 +1,5 @@
 package calculator;
 
-public interface Calculator {
-    long calculate(String input);
+public interface Calculator<T> {
+    T calculate(String input);
 }
