@@ -18,6 +18,10 @@ public class BaseBalls {
         balls.add(baseBall);
     }
 
+    public boolean containsBall(BaseBall baseBall) {
+        return balls.contains(baseBall);
+    }
+
     public boolean notContainsBall(BaseBall baseBall) {
         return !balls.contains(baseBall);
     }
