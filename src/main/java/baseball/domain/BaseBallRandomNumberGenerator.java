@@ -1,8 +1,6 @@
-package baseball;
+package baseball.domain;
 
 import baseball.consts.BaseBallConfig;
-import baseball.domain.BaseBall;
-import baseball.domain.BaseBalls;
 import baseball.utils.RandomUtils;
 
 public class BaseBallRandomNumberGenerator implements BaseBallNumberGenerator {

@@ -1,6 +1,7 @@
 package baseball;
 
 import baseball.domain.BaseBall;
+import baseball.domain.BaseBallRandomNumberGenerator;
 import baseball.domain.BaseBalls;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

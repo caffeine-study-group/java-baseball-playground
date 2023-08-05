@@ -1,6 +1,4 @@
-package baseball;
-
-import baseball.domain.BaseBalls;
+package baseball.domain;
 
 public interface BaseBallNumberGenerator {
     BaseBalls numberGenerate();
