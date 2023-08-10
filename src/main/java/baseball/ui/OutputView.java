@@ -5,4 +5,7 @@ import baseball.domain.JudgementResult;
 public interface OutputView {
 
     void printJudgementResult(JudgementResult judgementResult);
+
+    void printGameEndMsg();
+
 }

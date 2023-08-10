@@ -1,5 +1,6 @@
 package baseball.ui;
 
+import baseball.consts.BaseBallMsgConst;
 import baseball.domain.JudgementResult;
 
 public class ConsoleOutputView implements OutputView {
@@ -21,5 +22,11 @@ public class ConsoleOutputView implements OutputView {
             System.out.println(String.format("%d스트라이트", judgementResult.getStrikeCount()));
         }
     }
+
+    @Override
+    public void printGameEndMsg() {
+        System.out.println(BaseBallMsgConst.GAME_END_MSG);
+    }
+
 
 }

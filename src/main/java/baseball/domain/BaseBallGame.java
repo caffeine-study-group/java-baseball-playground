@@ -21,16 +21,34 @@ public class BaseBallGame {
         judgement = new Judgement();
     }
 
-    public void start() {
-        setUp();
+    public void playBall() {
 
+        setUp();
+        start();
+        end();
+
+    }
+
+    private void start() {
         JudgementResult judgementResult;
 
         do {
             judgementResult = judgement.judgement(randomBall, inputView.userInputScanner());
             outputView.printJudgementResult(judgementResult);
         } while(judgementResult.getGameStatus().equals(BaseBallConfig.GameStatus.PLAYING));
+
     }
+
+    private void end() {
+        outputView.printGameEndMsg();
+        inputView.reTryQuestion();
+        BaseBallConfig.RetryStatus userChoice = inputView.userRetryInputScanner();
+
+        if (userChoice.equals(BaseBallConfig.RetryStatus.NEW_GAME)) {
+            this.playBall();
+        }
+    }
+
 
     private void setUp() {
         randomBall = generator.numberGenerate();

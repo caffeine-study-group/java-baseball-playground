@@ -1,6 +1,7 @@
 package baseball.ui;
 
-import baseball.consts.InputMsgConst;
+import baseball.consts.BaseBallConfig;
+import baseball.consts.BaseBallMsgConst;
 import baseball.domain.BaseBall;
 import baseball.domain.BaseBalls;
 
@@ -27,7 +28,32 @@ public class ConsoleInputView implements InputView {
         return baseBalls;
     }
 
+    @Override
+    public BaseBallConfig.RetryStatus userRetryInputScanner() {
+        int input = Integer.parseInt(scanner.nextLine());
+
+        if (input == BaseBallConfig.RetryStatus.NEW_GAME.status) {
+            return BaseBallConfig.RetryStatus.NEW_GAME;
+        }
+
+        if (input == BaseBallConfig.RetryStatus.GAME_END.status) {
+            return BaseBallConfig.RetryStatus.GAME_END;
+        }
+
+        System.out.println("잘못 입력하였습니다. 다시 입력해주세요.");
+        return userRetryInputScanner();
+    }
+
+    @Override
+    public void reTryQuestion() {
+        printInputReTryQuestionMsg();
+    }
+
     private void printInputGuideMsg() {
-        System.out.print(InputMsgConst.USER_BASEBALL_REQUEST_MSG);
+        System.out.print(BaseBallMsgConst.USER_BASEBALL_REQUEST_MSG);
+    }
+
+    private void printInputReTryQuestionMsg() {
+        System.out.println(BaseBallMsgConst.GAME_RE_TRY_QUEST_MSG);
     }
 }

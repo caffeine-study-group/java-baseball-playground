@@ -9,4 +9,14 @@ BaseBallConfig {
     public enum GameStatus {
         PLAYING, END
     }
+
+    public enum RetryStatus {
+        NEW_GAME(1), GAME_END(2);
+
+        public final int status;
+
+        RetryStatus(int status) {
+            this.status = status;
+        }
+    }
 }

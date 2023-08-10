@@ -14,6 +14,6 @@ public class Application {
                 new ConsoleOutputView()
         );
 
-        baseBallGame.start();
+        baseBallGame.playBall();
     }
 }
