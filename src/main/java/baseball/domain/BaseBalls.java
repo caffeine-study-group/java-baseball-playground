@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import baseball.consts.BaseBallMsgConst;
 import baseball.exceptions.BaseBallsMaxCountException;
 
 import java.util.ArrayList;
@@ -12,8 +13,8 @@ public class BaseBalls {
     private final List<BaseBall> balls = new ArrayList<>();
 
     public void addBall(BaseBall baseBall) {
-        if (balls.size() == 3) {
-            throw new BaseBallsMaxCountException(String.format("야구공을 %s개 이하로 추가해주세요.", MAX_BALL_COUNT));
+        if (balls.size() == MAX_BALL_COUNT) {
+            throw new BaseBallsMaxCountException(String.format(BaseBallMsgConst.MAX_COUNT_EXCEPTION_MSG, MAX_BALL_COUNT));
         }
         balls.add(baseBall);
     }
@@ -28,5 +29,13 @@ public class BaseBalls {
 
     public List<BaseBall> getBalls() {
         return balls;
+    }
+
+    public int size() {
+        return this.balls.size();
+    }
+
+    public BaseBall getByIndex(int index) {
+        return this.balls.get(index);
     }
 }

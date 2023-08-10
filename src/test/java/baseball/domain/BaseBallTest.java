@@ -25,7 +25,7 @@ class BaseBallTest {
         assertThatThrownBy(()-> {
             BaseBall baseBall = BaseBall.from(input);
         }).isInstanceOf(BaseBallBoundException.class)
-                .hasMessageContaining("공은 1보다 크거나 10보다는 작아야 합니다.");
+                .hasMessageContaining("공은 1보다 크고 9보다는 작아야 합니다.");
     }
 
 }

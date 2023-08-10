@@ -1,7 +1,7 @@
 package baseball;
 
 import baseball.domain.BaseBallGame;
-import baseball.domain.BaseBallRandomNumberGenerator;
+import baseball.generator.BaseBallRandomNumberGenerator;
 import baseball.ui.ConsoleInputView;
 import baseball.ui.ConsoleOutputView;
 

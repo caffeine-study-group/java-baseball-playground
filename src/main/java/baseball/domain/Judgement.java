@@ -1,5 +1,8 @@
 package baseball.domain;
 
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.IntStream;
+
 public class Judgement {
 
     public JudgementResult judgement(BaseBalls criteria, BaseBalls userInput) {
@@ -10,32 +13,24 @@ public class Judgement {
     }
 
     private int containBallCount(BaseBalls criteria, BaseBalls userInput) {
-        int result = 0;
-
-        for (int i = 0; i < criteria.getBalls().size(); i++) {
-            result += judgementBall(criteria, userInput, i);
-        }
-
-        return result;
+        return IntStream.range(0, criteria.size())
+                        .map(index -> judgementBall(criteria, userInput, index))
+                        .reduce(0, Integer::sum);
     }
 
     private int containStrikeCount(BaseBalls criteria, BaseBalls userInput) {
-        int result = 0;
-
-        for (int i = 0; i < criteria.getBalls().size(); i++) {
-            result += judgementStrike(criteria.getBalls().get(i), userInput.getBalls().get(i));
-        }
-
-        return result;
+        return IntStream.range(0, criteria.size())
+                .map(index -> judgementStrike(criteria.getByIndex(index), userInput.getByIndex(index)))
+                .reduce(0, Integer::sum);
     }
 
     private int judgementBall(BaseBalls criteria, BaseBalls userInput, int index) {
-        int strike = judgementStrike(criteria.getBalls().get(index), userInput.getBalls().get(index));
+        int strike = judgementStrike(criteria.getByIndex(index), userInput.getByIndex(index));
         if (strike > 0) {
             return 0;
         }
 
-        if (criteria.containsBall(userInput.getBalls().get(index))) {
+        if (criteria.containsBall(userInput.getByIndex(index))) {
             return 1;
         }
 

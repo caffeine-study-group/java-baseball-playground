@@ -14,7 +14,7 @@ public class BaseBall {
 
     public static BaseBall from(int ball) throws BaseBallBoundException {
         if (ball < BaseBallConfig.BASE_BALL_MIN || ball > BaseBallConfig.BASE_BALL_MAX) {
-            throw new BaseBallBoundException(String.format("공은 %s다 크거나 %s보다는 작아야 합니다.",
+            throw new BaseBallBoundException(String.format("공은 %s보다 크고 %s보다는 작아야 합니다.",
                     BaseBallConfig.BASE_BALL_MIN, BaseBallConfig.BASE_BALL_MAX ));
         }
         return new BaseBall(ball);

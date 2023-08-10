@@ -1,6 +1,7 @@
 package baseball.domain;
 
 import baseball.consts.BaseBallConfig;
+import baseball.generator.BaseBallNumberGenerator;
 import baseball.ui.InputView;
 import baseball.ui.OutputView;
 
@@ -22,11 +23,10 @@ public class BaseBallGame {
     }
 
     public void playBall() {
-
         setUp();
         start();
         end();
-
+        retry();
     }
 
     private void start() {
@@ -41,10 +41,12 @@ public class BaseBallGame {
 
     private void end() {
         outputView.printGameEndMsg();
-        inputView.reTryQuestion();
-        BaseBallConfig.RetryStatus userChoice = inputView.userRetryInputScanner();
 
-        if (userChoice.equals(BaseBallConfig.RetryStatus.NEW_GAME)) {
+    }
+
+    private void retry() {
+        inputView.reTryQuestion();
+        if (BaseBallConfig.RetryStatus.NEW_GAME.equals(inputView.userRetryInputScanner())) {
             this.playBall();
         }
     }
